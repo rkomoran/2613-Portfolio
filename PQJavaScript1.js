@@ -1,15 +1,11 @@
 const prompt = require('prompt-sync')();
-
 const input = prompt();
-var inputArray = input.split(",")
 
-// have to use trim() here in order for the string comparasion later to work
-const person = {age: inputArray[0], height: inputArray[1], weight: inputArray[2], mood: inputArray[3].trim(), view: inputArray[4].trim()}
+// have to add a space after , to avoid comparasion errors later
+var inputArray = input.split(", ")
+
+const person = {age: inputArray[0], height: inputArray[1], weight: inputArray[2], mood: inputArray[3], view: inputArray[4]}
 let {age, height, weight, mood, view} = person;
-
-// console.log(recommender(age,height,weight,mood,view));
-
-
 
 function recommender(age, height, weight, mood, view) {
     let recommendation = "";
@@ -44,18 +40,6 @@ function recommender(age, height, weight, mood, view) {
     return recommendation;
 }
 
-const isParkOpen = () => {
-    let result = false;
-    let currentDate = "2024-05-06";
-    let currentTime = "11:00:01 a.m.";
-    if (currentDate >= "2024-05-01" && currentDate < "2024-09-30") {
-        if (currentTime >= "11:00:00 a.m." && currentTime <= "11:00:00 p.m.") {
-            result = true;
-        }
-    }
-    return result;
-}
-
 function date() {
     let date = new Date().toLocaleString();
     let stringArray = date.split(",");
@@ -65,10 +49,37 @@ function date() {
 }
 
 function time() {
-    let time1 = new Date().toLocaleString();
-    let stringArray = time1.split(",");
+    let time = new Date().toLocaleString();
+    let stringArray = time.split(",");
     // removes any whitespace
-    // accesses time from toLocaleString
-    return stringArray[1].trim();
+    // accesses time from toLocaleString, cuts off seconds and a.m or p.m
+    return stringArray[1].trim().substring(0,5);
 }
 
+const isParkOpen = () => {
+    let result = false;
+    let currentDateObject = new Date();
+    // tested if this works with 2024-05-06
+    let currentDate = date();
+    let currentTime = currentDateObject.getHours();
+    if (currentDate >= "2024-05-01" && currentDate < "2024-09-30") {
+        if (currentTime >= 11 && currentTime <= 23) {
+            result = true;
+        }
+    }
+    return result;
+}
+
+const printResults = () => {
+    let sentence = ""
+    sentence += `${time()} - `
+    sentence += "The Amusement Park is " + (isParkOpen() ? "OPEN." : "CLOSED.") + " Recommended Rides\n"
+
+    sentence += recommender(age, height, weight, mood, view) === "" ? 
+    "Sorry, there are no suitable rides at this moment\n" : recommender(age, height, weight, mood, view)
+    
+    sentence += isParkOpen() ? "We hope to see you soon!\n" : "We hope to see you when our park opens, every day 11AM-11PM from May 1st to September 30th.\n"
+    return sentence
+}
+
+console.log(printResults())
