@@ -1,22 +1,15 @@
 #lang slideshow
 
-(colorize (disk 40) "red")
-(colorize (filled-rectangle 40 40) "red")
-(disk 40)
+(define (rainbow-helper count s1 s2 myList)
+  (cond [(empty? myList)
+         '()]
+        [(even? count)
+         (cons (colorize s1 (first myList)) (rainbow-helper (sub1 count) s1 s2 (rest myList)))]
+        [(odd? count)
+         (cons (colorize s2 (first myList)) (rainbow-helper (sub1 count) s1 s2 (rest myList)))]))
 
-(define (helper s1 myList)
-  (if (empty? myList)
-  '()
-  (cons (colorize s1 (first myList)) (helper s1 (rest myList)))))
+(define (my-rainbow s1 s2)
+  (let ([size (length '("red" "orange" "yellow" "green" "blue" "purple"))])
+    (rainbow-helper size s1 s2 '("red" "orange" "yellow" "green" "blue" "purple"))))
 
-
-(helper (disk 40) '("red" "orange" "yellow" "green" "blue" "purple"))
-
-;(define (my-rainbow2 shape)
-  ;(let ([colors '("red" "orange" "yellow" "green" "blue" "purple")])
-    ;(empty? colors) '()
-    ;(cons (colorize shape (first colors)) (my-rainbow (colorize shape (first (rest colors)))))))
-
-;;(define (my-rainbow s1)
-  ;(my-rainbow-helper s1 '("red" "orange" "yellow" "green" "blue" "purple")))
-
+(my-rainbow (filled-rectangle 25 25) (filled-ellipse 25 25))
