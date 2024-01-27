@@ -1,0 +1,10 @@
+#lang racket
+
+% a lot like the map function in Javascript PQ2.
+% map takes in two arguments: a function & a list
+% for each element in that list, an anonymous function
+% is applied to that element (exponent of itself)
+% and a new list is returned from the map function
+(map (lambda (x) (expt x x)) '(1 2 3 4 5))
+(append-map (lambda (x) (list (expt x x))) '(1 2 3 4 5))
+(apply append (map (lambda (x) (list (expt x x))) '(1 2 3 4 5)))

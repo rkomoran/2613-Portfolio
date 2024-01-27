@@ -1,0 +1,7 @@
+#lang racket
+
+(define x 2.5)
+(define y 3.5)
+(displayln (cond [(> (* x 2) (* y 1.5)) 5]
+                 [(< (* x 2) (+ y 1.5)) 3]
+                 [(= (* x 2) (+ y 1.5)) 10]
