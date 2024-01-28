@@ -11,28 +11,31 @@ function recommender(age, height, weight, mood, view) {
     let recommendation = "";
 
     if (Number(age) > 4 && Number(age) < 12) {
-        console.log("Success");
-        if (mood === "Calm") {
-            console.log("Success");
+        if ((mood === "Calm" || mood === "N/A") && view !== "Yes") {
             recommendation += "\tMerry-Go-Round\n";
         }
     }
+
     if (Number(age) > 4 && Number(height) >= 152.4 && Number(weight) >= 36.29) {
-        if (mood === "Exciting") {
+        if ((mood === "Exciting" || mood === "N/A") && view !== "Yes") {
             recommendation += "\tTilt-A-Whirl\n";
         }
     }
     
-    if (Number(age) > 10 && Number(height) >= 152.4) {
-        if (mood === "Calm" || view == "Yes") {
+    if (Number(age) >= 10 && Number(height) >= 152.4) {
+        if (mood === "Calm" || mood === "N/A" || view === "Yes") {
             recommendation += "\tFerris Wheel\n";
         }
-        if (mood === "Exciting" || view == "Yes") {
+    }
+
+    if (Number(age) > 10 && Number(height) >= 152.4) {
+        if (mood === "Exciting" || mood === "N/A" || view === "Yes") {
             recommendation += "\tRollercoaster\n";
         }
-    }
+    } 
+
     if (Number(age) > 14 && Number(height) >= 152.4 && Number(weight) >= 36.29) {
-        if (mood === "Exciting") {
+        if ((mood === "Exciting" || mood === "N/A") && view !=- "Yes") {
             recommendation += "\tBumper Cars\n";
         }
     }
