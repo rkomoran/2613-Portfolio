@@ -26,25 +26,26 @@
           [else (appender (append input (list (if (number? (string->number line)) (string->number line) line)))
                                   (read-line))])))))
 
-;(define (eqDefiner myList)
-;  (cond
-;    [(empty? myList) '()]
-;    [(string=? (first myList) "END") '()]
-;    [else
-;     (let* ([word (first myList)])
-;       (let* ([size ((second myList))])
-;         (cond
-;           [(string=? word "SUM") (handle-sum size (take-values (rest myList)))]
-;           [(string=? word "AVG") (handle-avg size (take-values (rest myList)))]
-;           [(string=? word "MAX") (handle-max size (take-values (rest myList)))]
-;           [(string=? word "MIN") (handle-min size (take-values (rest myList)))]
-;          [(string=? word "FXP") (handle-fxp size (take-values (rest myList)))]
-;           [(string=? word "FPO") (handle-fpo size (take-values (rest myList)))]
-;           [(string=? word "FSN") (handle-fsn size (take-values (rest myList)))]
-;           [(string=? word "FCS") (handle-fcs size (take-values (rest myList)))]
-;           [else '()])
-;        (eqDefiner (drop-values (rest myList)))))]))
+(define (eqDefiner myList)
+  (cond
+    [(empty? myList) '()]
+    [(string=? (first myList) "END") '()]
+    [else
+     (let* ([word (first myList)])
+       (let* ([size (second myList)])
+         (cond
+           [(string=? word "SUM") (displayln (handle-sum (take-values (rest (rest myList)))))] 
+           [(string=? word "AVG") (displayln (handle-avg size (take-values (rest (rest myList)))))]
+           [(string=? word "MAX") (displayln (handle-max size (take-values (rest (rest myList))) -inf.0))]
+           [(string=? word "MIN") (displayln (handle-min size (take-values (rest (rest myList))) +inf.0))]
+           [(string=? word "FXP") (displayln (handle-fxp (take-values (rest (rest myList)))))]
+           [(string=? word "FPO") (displayln (handle-fpo (take-values (rest (rest myList)))))]
+           [(string=? word "FSN") (displayln (handle-fsn (take-values (rest (rest myList)))))]
+           [(string=? word "FCS") (displayln (handle-fcs (take-values (rest (rest myList)))))]
+           [else '()])
+        (eqDefiner (drop-values (rest myList)))))]))
 
+#|
 ; test for just checking sum
 (define (eqDefiner myList)
   (cond
@@ -55,11 +56,11 @@
        (let* ([size (second myList)])
          (cond
            [(string=? word "SUM")
-            ; skips indentifier
-            (let ([result (handle-sum size (take-values (rest (rest myList))))])
-              (displayln (cadr result)))]
+            ; Call handle-sum and print the result directly
+            (displayln (handle-sum size (take-values (rest (rest myList)))))]
            [else '()])
          (eqDefiner (drop-values (rest myList)))))]))
+|#
 
 ; this takes all the numbers after the initator up to a string
 (define (take-values lst)
@@ -76,30 +77,89 @@
     [(string? (first lst)) lst]
     [else (drop-values (rest lst))]))
 
+; calculates sum
+(define (handle-sum values)
+  (cond
+    [(empty? values) 0] 
+    [else (+ (first values) (handle-sum (rest values)))]))
 
-;(define (handle-sum size values)
-;  )
+; calculates average 
+(define (handle-avg size values)
+  (/ (handle-sum values) size))
 
-;(define (handle-avg size values)
-;  )
+; finds max in list
+(define (handle-max size values maxVal)
+  (cond
+    [(empty? values) maxVal] 
+    [else
+     (cond
+       [(> (first values) maxVal) (handle-max size (rest values) (first values))]
+       [else (handle-max size (rest values) maxVal)])]))
 
-;(define (handle-max size values)
-;  )
+; finds min in list
+(define (handle-min size values minVal)
+    (cond
+    [(empty? values) minVal] 
+    [else
+     (cond
+       [(< (first values) minVal) (handle-min size (rest values) (first values))]
+       [else (handle-min size (rest values) minVal)])]))
 
-;(define (handle-min size values)
-;  )
+(define (factorial n)
+  (cond
+    [(<= n 0) 1]
+    [(* n (factorial (sub1 n)))]))
 
-;(define (handle-fxp size values)
-;  )
+(define (handle-fxp values)
+  (define (compute-fxp z)
+    (let loop ([k 0]
+               [currListNums '()])
+      (if (= k 50)
+          ; when 50 is reached, add the current list all together into 1 number
+          (handle-sum currListNums)
+          ; if not, keep recursive calling our let and updating k
+          ; as well as appending calculations to currListNums list
+          (loop (add1 k)
+                (cons (/ (expt z k) (factorial k))
+                      currListNums)))))
+  
+  ; applies the compute-fxp function on each element in list
+  ; and map returns a new list of each number interation calculated by
+  ; compute-fxp
+  (map compute-fxp values))
 
-;(define (handle-fpo size values)
-;  )
+(define (handle-fpo values)
+  (define (compute-fpo z)
+    (let loop ([k 0]
+               [currListNums '()])
+      (if (= k 50)
+          (handle-sum currListNums)
+          (loop (add1 k) (cons (* k (/ (expt z k) (factorial k))) currListNums)))))
+  
+  (map compute-fpo values))
 
-;(define (handle-fsn size values)
-;  )
+(define (handle-fsn values)
+  (define (compute-fsn z)
+    (let loop ([k 0]
+               [currListNums '()])
+      (if (= k 50)
+          (handle-sum currListNums)
+          (loop (add1 k)
+                (cons (/ (* (expt -1 k) (expt z (+ 1 (* 2 k)))) (factorial (+ 1 (* 2 k))))
+                      currListNums)))))
+  
+  (map compute-fsn values))
 
-;(define (handle-fcs size values)
-;  )
+(define (handle-fcs values)
+  (define (compute-fcs z)
+    (let loop ([k 0]
+               [currListNums '()])
+      (if (= k 50)
+          (handle-sum currListNums)
+          (loop (add1 k) (cons (/ (* (expt -1 k) (expt z (* 2 k))) (factorial (* 2 k))) currListNums)))))
+  
+  (map compute-fcs values))
+
 
 (define (process-file file)
   (eqDefiner (read-lines-from-file file)))
