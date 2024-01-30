@@ -1,9 +1,17 @@
 #lang racket
 ; reading in from file and converting numbers read from strings to numbers
 (define (read-lines-from-file file-path)
+  ; using this requires an anon function
+  ; 13.1.5 File Ports Racket documentation
   (with-input-from-file file-path
     
-    ; anon function
+    ; anon helper function for converting numbers into integers
+    ; and keep strings as strings
+    ; put them all in a list
+
+    ; this also creates the scope for appender to allow it
+    ; to recursively call itsself & preform the steps
+    ; metioned above
     (lambda ()
       
       ; 3.9 Local Binding on racket docs
@@ -26,24 +34,30 @@
           [else (appender (append input (list (if (number? (string->number line)) (string->number line) line)))
                                   (read-line))])))))
 
-(define (eqDefiner myList)
-  (cond
-    [(empty? myList) '()]
-    [(string=? (first myList) "END") '()]
-    [else
-     (let* ([word (first myList)])
-       (let* ([size (second myList)])
-         (cond
-           [(string=? word "SUM") (displayln (handle-sum (take-values (rest (rest myList)))))] 
-           [(string=? word "AVG") (displayln (handle-avg size (take-values (rest (rest myList)))))]
-           [(string=? word "MAX") (displayln (handle-max size (take-values (rest (rest myList))) -inf.0))]
-           [(string=? word "MIN") (displayln (handle-min size (take-values (rest (rest myList))) +inf.0))]
-           [(string=? word "FXP") (displayln (handle-fxp (take-values (rest (rest myList)))))]
-           [(string=? word "FPO") (displayln (handle-fpo (take-values (rest (rest myList)))))]
-           [(string=? word "FSN") (displayln (handle-fsn (take-values (rest (rest myList)))))]
-           [(string=? word "FCS") (displayln (handle-fcs (take-values (rest (rest myList)))))]
-           [else '()])
-        (eqDefiner (drop-values (rest myList)))))]))
+(define (eqDefiner myList outputFilePath)
+  (with-output-to-file outputFilePath #:exists 'append
+    (lambda ()
+      (cond
+        [(empty? myList) '()]
+        [(string=? (first myList) "END") '()]
+        [else
+         (let* ([word (first myList)])
+           (let* ([size (second myList)])
+             (cond
+               ; ~a converts value as string to string
+               ; integer value as string
+               ; list value as readable list
+               [(string=? word "SUM") (printf "SUM result: ~a\n" (handle-sum (take-values (rest (rest myList)))))] 
+               [(string=? word "AVG") (printf "AVG result: ~a\n" (handle-avg size (take-values (rest (rest myList)))))]
+               [(string=? word "MAX") (printf "MAX result: ~a\n" (handle-max size (take-values (rest (rest myList))) -inf.0))]
+               [(string=? word "MIN") (printf "MIN result: ~a\n" (handle-min size (take-values (rest (rest myList))) +inf.0))]
+               [(string=? word "FXP") (printf "FXP result: ~a\n" (handle-fxp (take-values (rest (rest myList)))))]
+               [(string=? word "FPO") (printf "FPO result: ~a\n" (handle-fpo (take-values (rest (rest myList)))))]
+               [(string=? word "FSN") (printf "FSN result: ~a\n" (handle-fsn (take-values (rest (rest myList)))))]
+               [(string=? word "FCS") (printf "FCS result: ~a\n" (handle-fcs (take-values (rest (rest myList)))))]
+               [else '()])
+            (eqDefiner (drop-values (rest myList)) outputFilePath)))]))))
+
 
 #|
 ; test for just checking sum
@@ -105,11 +119,13 @@
        [(< (first values) minVal) (handle-min size (rest values) (first values))]
        [else (handle-min size (rest values) minVal)])]))
 
+; calculates factorial for upcoming equations
 (define (factorial n)
   (cond
     [(<= n 0) 1]
     [(* n (factorial (sub1 n)))]))
 
+; calculates fxp
 (define (handle-fxp values)
   (define (compute-fxp z)
     (let loop ([k 0]
@@ -128,6 +144,7 @@
   ; compute-fxp
   (map compute-fxp values))
 
+; calculates fpo
 (define (handle-fpo values)
   (define (compute-fpo z)
     (let loop ([k 0]
@@ -138,6 +155,7 @@
   
   (map compute-fpo values))
 
+; calculates fsn
 (define (handle-fsn values)
   (define (compute-fsn z)
     (let loop ([k 0]
@@ -150,6 +168,7 @@
   
   (map compute-fsn values))
 
+; calculates fcs
 (define (handle-fcs values)
   (define (compute-fcs z)
     (let loop ([k 0]
@@ -162,7 +181,7 @@
 
 
 (define (process-file file)
-  (eqDefiner (read-lines-from-file file)))
+  (eqDefiner (read-lines-from-file file) "Output.txt"))
 
 (define input-file "DataInput.txt")
 (define results (process-file input-file))
