@@ -42,3 +42,19 @@ print(string.format(quantity, item, price))
 txt = "What's up"
 print(txt[2])
 
+# string practice in thinkpython2e
+
+# write a loop that prints words backwards one line at a time
+word = "Hello"
+for i in range(len(word)):
+    print(word[len(word) - i - 1])
+
+# duck names
+
+prefixes = 'JKLMNOPQ'
+suffix = 'ack'
+for letter in prefixes:
+    if 'O' in letter or 'Q' in letter:
+        print(letter + 'u' + suffix)
+    else:
+        print(letter + suffix)
