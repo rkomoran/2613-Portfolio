@@ -5,20 +5,19 @@ let tyson_score = []
 let zack_score = []
 
 function readJSON() {
+    let fileExists = true
     try {
         let i = 1
 
-        while (!(i > 4)) {
+        while (fileExists) {
             let file = `calculations${i}.json`
-            // console.log(file)
 
             // reading in file
             const data = fs.readFileSync(file,
                 { encoding: 'utf8', flag: 'r' })
             
-                
             formatted_data = JSON.parse(data).data.calculations;
-            // data_array.push(formatted_data)
+
             let true_val = parseFloat(formatted_data[0].calc)
             let performer = ""
             let performer_val = 0
@@ -40,23 +39,15 @@ function readJSON() {
                 }
             }
 
-            // console.log(true_val)
-            // console.log(performer)
-
             i += 1
-        }
-        
+        } 
     }
     catch(err) {
-
+        fileExists = false
     }
 }
 
 readJSON()
-
-// console.log(abby_score)
-// console.log(tyson_score)
-// console.log(zack_score)
 
 abby_sum = 0
 for (let i = 0; i < abby_score.length; i++) {
@@ -72,10 +63,6 @@ zack_sum = 0
 for (let i = 0; i < zack_score.length; i++) {
     zack_sum += zack_score[i]
 }
-
-console.log(`Abby's score: ${abby_sum}`)
-console.log(`Tyson's score: ${tyson_sum}`)
-console.log(`Zack's sum: ${zack_sum}`)
 
 let table = [abby_sum, tyson_sum, zack_sum];
 let names = ["abby", "tyson", "zack"]
@@ -93,52 +80,18 @@ for (let i = 0; i < table.length; i++) {
         lowestpos = i;
     }
     if (table[i] > highest) {
-        highest = table[i]
-        highestpos = i
-    }
-    else {
-        middlepos = i
+        highest = table[i];
+        highestpos = i;
     }
 }
 
-console.log(lowestpos);
-console.log(highestpos);
-console.log(middlepos);
+// assigning middlepos
+for (let i = 0; i < table.length; i++) {
+    if (i !== lowestpos && i !== highestpos) {
+        middlepos = i;
+    }
+}
 
 console.log(`1: ${names[lowestpos]} - ${table[lowestpos]}`);
 console.log(`2: ${names[middlepos]} - ${table[middlepos]}`);
 console.log(`3: ${names[highestpos]} - ${table[highestpos]}`);
-// console.log(names[highestpos]+table[highestpos]);
-
-// kinda working
-
-// numbers_array = []
-// names_array = []
-
-// for (const object of test_array) {
-//     for (const nums of object) {
-//         numbers_array.push(parseFloat(nums.calc))
-//         // console.log(nums.calc)
-//     }
-//     for (const names of object) {
-//         names_array.push(names.performer)
-//         // console.log(names.performer)
-//     }
-// }
-// console.log(numbers_array)
-// console.log(names_array)
-
-
-// for (let object = 0; object < test_array.length; object++) {
-//     for (let nums = 0; nums < object.length; nums++) {
-//         console.log(nums.calc)
-//     }
-// }
-
-// console.log(test_array)
-// console.log(readJSON())
-
-
-// tyson 53.6
-// xack 115.5670
-// abby 473
