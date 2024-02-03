@@ -21,6 +21,15 @@
 (string #\H #\I)
 ; HI
 
+; Chars to integers
+
+(char->integer #\A)
+; 65
+
+; Integers to chars
+(integer->char 65)
+; #\A
+
 ; Length of a string
 (string-length "Hello")
 ; 5
@@ -139,6 +148,15 @@ s
 
 (append '(1 2 3) '(4 5 6))
 
+; Filtering
+
+; Returns list of elements where #<procedure> produces a true value
+(filter positive? '(1 -2 3 4 -5))
+; '(1 3 4)
+
+(filter (lambda (number) (zero? (modulo number 2))) '(1 2 3 4 5 6))
+; '(2 4 6)
+
 ;; Little bit of Map
 
 ; Map applies a funtion onto list(s)
@@ -149,6 +167,28 @@ s
 ; To do the following, the lists MUST be the same size
 (map + '(1 2 3) '(10 11 12))
 ; '(11 13 15)
+
+; andmap and ormap
+
+; andmap applies #<procedure> to tail end of arguments
+(andmap (lambda (number) (* 2 number)) '(1 2 3))
+; 6
+
+(andmap + '(1 2 3) '(4 5 6))
+; 9
+
+; checks if every element is positive
+(andmap positive? '(1 -2 3))
+; #f
+
+; ormap applies #<procedure> to the first of arguments
+
+(ormap sub1 '(1 2 3))
+; 0
+
+; only returns false if every element produces false
+(ormap positive? '(1 -8 5))
+; #t
 
 ;; Lambdas
 
@@ -242,3 +282,8 @@ s
 (for ([i (in-naturals 1)]
       [chapter '("Intro" "Details" "Conclusion")])
   (printf "Chapter ~a. ~a\n" i chapter))
+
+
+(for ([i (in-naturals)]
+      [nums '(1 2 3 4)])
+  (printf "Got ~a\n" nums))
