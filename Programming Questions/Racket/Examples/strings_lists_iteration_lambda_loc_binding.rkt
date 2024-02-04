@@ -5,6 +5,7 @@
 (string-append "Hello " "world!")
 ; Hello world!
 
+; Gets char at certain position
 (string-ref "Hello" 0)
 ; #\H
 
@@ -22,7 +23,6 @@
 ; HI
 
 ; Chars to integers
-
 (char->integer #\A)
 ; 65
 
@@ -72,7 +72,7 @@ s
 ;; Advanced stuff
 
 ; The following uses * on the string-append & append* functions
-; these do the same thing as the normal functions (append strings together & appending lists togetger)
+; these do the same thing as the normal functions (append strings together & appending lists together)
 ; except that you can use arguments
 
 ; so map expects a #<procedure> & a list to be given. For our procedure -- we use lambda. This lambda NEEDS to have an argument for map
@@ -81,10 +81,10 @@ s
 ; now, we want to append these lists into one list, append* does that for us
 ; (append* (map (lambda (x) (list ", " x)) '("Alpha" "Beta" "Gamma"))) gives us '(", " "Alpha" ", " "Beta" ", " "Gamma")
 
-; string-append turns this into a singular string
+; string-append* turns this into a singular string
 ; ", Alpha ,Beta ,Gamma"
 
-; and rest skips the first ", " from '(", " "Alpha" ", " "Beta" ", " "Gamma") giving us "Alpha, Beta, Gamma"
+; and rest skips the first ", " from ", Alpha ,Beta ,Gamma" giving us "Alpha, Beta, Gamma"
 
 (string-append* (rest (append* (map (lambda (x) (list ", " x)) '("Alpha" "Beta" "Gamma")))))
 
@@ -101,7 +101,7 @@ s
 
 ;; String trimming
 
-; trims in string by removing prefix and suffix seperators (whitespace, newlines, etc)
+; trims a string by removing prefix and suffix seperators (whitespace, newlines, etc)
 ; default is whitespace
 (string-trim "    woah \n look at this white space \t\r     ")
 ; "woah \n look at this white space"
@@ -112,7 +112,7 @@ s
 
 ;; String splitting
 
-; much like string->list except this takes care of seperators at the suffix/prefix of string
+; like string->list except this takes care of seperators at the suffix/prefix of string & provides strings instead of chars in the list
 
 (string-split "   foo bar   baz \r\t\n")
 ; '("foo" "bar" "baz")
@@ -147,6 +147,7 @@ s
 ; Can also append
 
 (append '(1 2 3) '(4 5 6))
+; '(1 2 3 4 5 6)
 
 ; Filtering
 
@@ -154,6 +155,7 @@ s
 (filter positive? '(1 -2 3 4 -5))
 ; '(1 3 4)
 
+; Looks at each element and applies proc to each -- results list if proc returned true on element
 (filter (lambda (number) (zero? (modulo number 2))) '(1 2 3 4 5 6))
 ; '(2 4 6)
 
@@ -242,6 +244,7 @@ s
 (define count-args
   (lambda args
     (printf "You passed ~a args: ~a\n" (length args) args)))
+
 (count-args 1 2 3 4)
 
 ;; Some iteration
@@ -275,8 +278,8 @@ s
 (for/list ([i "abc"])
   i)
 
-; in-naturals unless exception is made
-; Parallel sequences and in-naturals work together. For expression stops iterating when any sequence ends
+; in-naturals loop forever unless exception is made
+; Parallel sequences and in-naturals work very well together. The expression stops iterating when any sequence ends
 
 ; this sets i = 1
 (for ([i (in-naturals 1)]
