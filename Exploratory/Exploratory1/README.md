@@ -1,5 +1,5 @@
 # ReadMe File
----
+
 ## What package/library does this sample program run?
 
 - The following project uses the __pygame__ library for Python.
