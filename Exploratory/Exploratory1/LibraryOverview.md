@@ -1,12 +1,17 @@
 ### Table of Contents
-- [Package/Library Overview](#when-was-it-created?)
-# Package/Library Overview
+- [Which package/library did I select?](#which-package)
+- [What is pygame?](#what-is-pygame)
+- [What are the functionalities of the package/library?](#functions)
+- [When was it created?](#created)
+- [How did learning this library influence my learning of the language?](#learning)
+- [How was my overall experience with the library?](#overall)
+# <a name="package-overview"></a>Package/Library Overview
 
-### Which package/library did I select?
+### <a name="which-library"></a>Which package/library did I select?
 
 - I used the __pygame__ library for python.
 
-## What is Pygame?
+## <a name="what-is-pygame"></a>What is Pygame?
 
 >What purpose does it serve?
 
@@ -71,7 +76,7 @@
 
 - The good thing about pygame is that it is widely used & there are a ton of tutorials out there
 
-## What are the functionalities of the package/library?
+## <a name="functions"></a>What are the functionalities of the package/library?
 
 - To explain the functionality of what pygame can do, I will provide a basic program and outline what the code does.
 
@@ -159,17 +164,17 @@ while running:
 
 - As you can see, the code is very minimal & easy to understand. One of the greats things about this library!
 
-## <a name="when-was-it-created?"></a>When was it created?
+## <a name="created"></a>When was it created?
 
 - Pygame was created in October, 2000 by Pete Shinners [ref](https://www.pygame.org/docs/tut/PygameIntro.html)
 
-## How did learning this library influence my learning of the language?
+## <a name="learning"></a>How did learning this library influence my learning of the language?
 
 - This library enhanced my overall abilities of Python. When it came to syntax, variable assignment, conditionals, loops; I all had experience with it prior -- but working with this library focuses on these features much more.
 
 - One thing that really helped me out were classes and inheritance in Python. In order to use my pictures -- I had to inherit from the `pygame.sprite.Sprite` class, and use super. I also got to see how to declare variables in a class with `self`
 
-## How was my overall experience with the library?
+## <a name="overall"></a>How was my overall experience with the library?
 
 - Overall, I was very pleased with how easy it was to use. The installation of the library and set up was very easy. Learning that the library is basically just a loop where you can add in elements progressively to be shown on screen was a fairy simple concept to understand.
 
