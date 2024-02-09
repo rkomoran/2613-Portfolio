@@ -4,7 +4,7 @@
 
 - The following project uses the __pygame__ library for Python.
   
-## How do you run the Frog Clicker?
+## How do you run the Frog Spawner?
 
 - To run this project, make sure you have __git__ installed.
 	- You can check by typing  ```git --verion``` in your terminal
@@ -25,7 +25,7 @@
 
 		- If it doesn't, check the error logs in your terminal -- you may be missing a prerequisite to run the program
 
-## What's the purpose of Frog Clicker?
+## What's the purpose of Frog Spawner?
 
 - The purpose of this program is to show some basic functions of the __pygame__ library. It shows basic user input/output, counters, random, logic, and grouping/ordering.
 
