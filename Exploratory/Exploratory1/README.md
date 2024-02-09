@@ -3,7 +3,7 @@
 ## What package/library does this sample program run?
 
 - The following project uses the __pygame__ library for Python.
----
+  
 ## How do you run the Frog Clicker?
 
 - To run this project, make sure you have __git__ installed.
@@ -22,12 +22,12 @@
 - We're getting close! Open your favourite code editor & open the contents within _2613-Portfolio > Exploratory > Exploratory1_
 	- Run the program, you should now see a GUI appear on your computer![[Pasted image 20240209110850.png]]
 		- If it doesn't, check the error logs -- you may be missing a prerequisite to run the program
----
+
 ## What's the purpose of Frog Clicker?
 
 - The purpose of this program is to show some basic functions of the __pygame__ library. It shows basic user input/output, counters, random, logic, and grouping/ordering.
 
----
+
 
 ## Some I/O of the program
 
