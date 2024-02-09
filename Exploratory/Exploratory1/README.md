@@ -20,7 +20,9 @@
 	- If that doesn't work, you can find alternatives [here](https://www.pygame.org/wiki/GettingStarted)
 ---
 - We're getting close! Open your favourite code editor & open the contents within _2613-Portfolio > Exploratory > Exploratory1_
-	- Run the program, you should now see a GUI appear on your computer![[Pasted image 20240209110850.png]]
+	- Run the program, you should now see a GUI appear on your computer
+   	![Screenshot from 2024-02-09 11-06-14](https://github.com/rkomoran/2613-Portfolio/assets/103604250/e985f18d-ed58-4e27-af0a-68f87ff3317a)
+
 		- If it doesn't, check the error logs -- you may be missing a prerequisite to run the program
 
 ## What's the purpose of Frog Clicker?
