@@ -28,7 +28,7 @@
 ## What's the purpose of Frog Spawner?
 
 - The purpose of this program is to show some basic functions of the __pygame__ library. It shows basic user input/output, counters, random, logic, and grouping/ordering.
-
+- There is also mention of classes, inheritance, and methods supplied from the pygame library
 
 
 ## Some I/O of the program
