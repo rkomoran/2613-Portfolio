@@ -23,7 +23,7 @@
 	- Run the program, you should now see a GUI appear on your computer
    	![Screenshot from 2024-02-09 11-06-14](https://github.com/rkomoran/2613-Portfolio/assets/103604250/e985f18d-ed58-4e27-af0a-68f87ff3317a)
 
-		- If it doesn't, check the error logs -- you may be missing a prerequisite to run the program
+		- If it doesn't, check the error logs in your terminal -- you may be missing a prerequisite to run the program
 
 ## What's the purpose of Frog Clicker?
 
