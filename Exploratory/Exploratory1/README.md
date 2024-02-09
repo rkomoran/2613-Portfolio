@@ -35,9 +35,11 @@
 
 - You may use your mouse or keyboard to generate a random ```.png``` of a frog on the screen
 
-![[Pasted image 20240209111203.png]]
+![Screenshot from 2024-02-09 11-11-55](https://github.com/rkomoran/2613-Portfolio/assets/103604250/191890f5-5658-4f29-9758-195f1126257d)
+
 
 - There are milestones in the game, signified by the counter on the top left. Once reading a certain number, you will be prompted with a message depending on how many frogs you have
 
-![[Pasted image 20240209111322.png]]
+![Screenshot from 2024-02-09 11-13-19](https://github.com/rkomoran/2613-Portfolio/assets/103604250/3edbe9e1-e2a5-4da2-9cb5-67c748322a6e)
+
 
