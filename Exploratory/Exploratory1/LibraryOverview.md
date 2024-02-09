@@ -61,7 +61,7 @@
 
 ---
 - For every game, we also need to create a window to display it in. In pygame, and many other game libraries where X and Y co-ordinates are involved, we can use this following picture to help us understand how they work
-	 
+	 am particularly excited about the prospect of contributing to developing secure designs or configurations, recommending technical solutions, and developing scripts to automate processes, as outlined in the job descriptio
 	 Our x values grow larger form left - right & our y values grow from top - down [ref](https://coderslegacy.com/python/python-pygame-tutorial/)
 
 
