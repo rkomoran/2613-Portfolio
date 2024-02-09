@@ -62,6 +62,7 @@
 ---
 - For every game, we also need to create a window to display it in. In pygame, and many other game libraries where X and Y co-ordinates are involved, we can use this following picture to help us understand how they work
 	![image-10](https://github.com/rkomoran/2613-Portfolio/assets/103604250/fbe4e276-3e17-4fab-8931-03f915d23927)
+
 	 Our x values grow larger form left - right & our y values grow from top - down [ref](https://coderslegacy.com/python/python-pygame-tutorial/)
 
 
