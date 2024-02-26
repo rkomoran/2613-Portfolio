@@ -58,11 +58,11 @@ function retval = fxp(array)
   for z = 1:length(array)
     currListNums = [];
     % off by one here, but cannot go from 0 to 50
-    for k = 0:50
-      currListNums(k+1) = (realpow(z, k) / factorial(k));
+    for k = 1:50
+      currListNums(k) = (realpow(z, k) / factorial(k));
     endfor
     % had to add it manually here
-    retval(z) = sum(currListNums);
+    retval(z) = sum(currListNums) + 1;
   endfor
 end
 
@@ -102,6 +102,7 @@ function retval = fcs(array)
   endfor
 end
 
+fileID = fopen("Q1Input.txt", "w");
 i = 1;
 while (i < length(formatted_data))
   % to access elements of cell array, must use curly braces
@@ -122,38 +123,36 @@ while (i < length(formatted_data))
   case "SUM"
     result = sum(storeNums(maxVal, numbers));
     % could make these prints into a function too
-    printf("SUM: %d\n",result);
+    fprintf(fileID, "SUM: %d\n",result);
   case "AVG"
     result = avg(storeNums(maxVal, numbers), maxVal);
-    printf("AVG: %d\n",result);
+    fprintf(fileID, "AVG: %d\n",result);
   case "MAX"
     result = max(storeNums(maxVal, numbers));
-    printf("MAX: %d\n",result);
+    fprintf(fileID, "MAX: %d\n",result);
   case "MIN"
     result = min(storeNums(maxVal, numbers));
-    printf("MIN: %d\n",result);
+    fprintf(fileID, "MIN: %d\n",result);
   case "FXP"
     result = fxp(storeNums(maxVal, numbers));
-    % make this into a function
-    printf("FXP: ");
-    printf(" %d ", result);
-    printf("\n");
-    %disp(result);
+    fprintf(fileID, "FXP: ");
+    fprintf(fileID, " %d ", result);
+    fprintf(fileID, "\n");
   case "FPO"
     result = fpo(storeNums(maxVal, numbers));
-    printf("FPO: ");
-    printf(" %d ", result);
-    printf("\n");
+    fprintf(fileID, "FPO: ");
+    fprintf(fileID, " %d ", result);
+    fprintf(fileID, "\n");
   case "FSN"
     result = fsn(storeNums(maxVal, numbers));
-    printf("FSN: ");
-    printf(" %d ", result);
-    printf("\n"); 
+    fprintf(fileID, "FSN: ");
+    fprintf(fileID, " %d ", result);
+    fprintf(fileID, "\n"); 
   case "FCS"
     result = fcs(storeNums(maxVal, numbers));
-    printf("FCS: ");
-    printf(" %d ", result);
-    printf("\n");
+    fprintf(fileID, "FCS: ");
+    fprintf(fileID, " %d ", result);
+    fprintf(fileID, "\n");
   endswitch
 
   % this now points to the other operand in cell array
