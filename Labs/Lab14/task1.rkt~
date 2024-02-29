@@ -1,0 +1,8 @@
+#lang racket
+
+(define (final_velocity time)
+  (define vi 32)
+  (define a -0.35)
+  (+ vi (* a time)))
+
+(final_velocity 5)
