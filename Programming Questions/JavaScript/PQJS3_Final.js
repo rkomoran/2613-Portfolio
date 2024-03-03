@@ -44,11 +44,13 @@ async function searchPopulation(input){
         
         // call other function for nearby cities
         rl.question("Radius in kilometres: ", function(input) {
-            searchCities(input, id);
+            searchCities(input, id)
         });
        
     } catch (error) {
-        console.error(error);
+        console.error("City cannot be found")
+        // forcefully terminates program
+        process.exit(1)
     }
 }
 
@@ -71,14 +73,16 @@ async function searchCities(input, id){
 
         nearbyCities = response.data.data
 
-        console.log("Some cities close are:\n")
+        console.log("Some cities close are:")
         for (let i = 0; i < nearbyCities.length; i++) {
             // access each piece of city data
             // and print the city
             console.log(`\t${nearbyCities[i].city}`)
         }
+        process.exit(1)
 
     } catch (error) {
-        console.error(error);
+        console.log("No nearby cities")
+        process.exit(1)
     }
 }
