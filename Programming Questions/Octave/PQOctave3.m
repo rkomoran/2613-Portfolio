@@ -63,10 +63,12 @@ function retval = determineOrigin(histogram1, histogram2, line)
     endfor
 
     if (pHistogram1 > pHistogram2)
-        retVal = pHistogram1;
+        disp("This is likely histogram1");
+        retVal = pHistogram1
     else 
-        retVal = pHistogram2;
+        disp("This is likely histogram2");
+        retVal = pHistogram2
     endif
 end
 
-determineOrigin(histogramBeowulf, histogramVindication, "This is a test");
+determineOrigin(histogramBeowulf, histogramVindication, "Forth he fared at the fated moment,");
