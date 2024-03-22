@@ -16,7 +16,8 @@
                    (define/public (triangle-perimeter other1 other2)
                      (let ([p1 (send this distance other1)]
                            [p2 (send this distance other2)]
-                           ;[p3 (send new this% other1 distance other2)]
+                           ; [p3 (send new this% other1 distance other2)]
+                           ; https://docs.racket-lang.org/reference/createclass.html#%28form._%28%28lib._racket%2Fprivate%2Fclass-internal..rkt%29._this%29%29
                            [p3 (sqrt (+ (expt (- (send other1 get-x) (send other2 get-x)) 2)
                                         (expt (- (send other1 get-y) (send other2 get-y)) 2)
                                         (expt (- (send other1 get-z) (send other2 get-z)) 2)))])
