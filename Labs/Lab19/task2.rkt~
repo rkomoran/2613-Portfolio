@@ -1,0 +1,10 @@
+#lang racket
+(require racket/class)
+
+(define 3DPoint% (class object%
+                   (super-new)
+                   (define/public)
+                   (define/public)
+                   (define/public)
+                   ; takes in a constructor with 3 points (x, y, and z)
+                   (init-field x y z)
