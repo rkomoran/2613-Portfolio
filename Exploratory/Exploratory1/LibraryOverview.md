@@ -184,9 +184,6 @@ while running:
 - I want to keep using this library for future projects. Although it seems like it's limited to simple projects, there have been more complex ones that are pretty impressive. Maybe I'll make a Frog Jumper instead of a Frog Spawner?
 
 
-
-!!! note
-
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
-    nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
-    massa, nec semper lorem quam in massa.
+> [!NOTE]
+> this is a note
+> hello note
