@@ -50,14 +50,13 @@
 
 - Defining user input is categorised as __"Events"__ in pygame. This could be things such as clicking the screen, typing on your keyboard, pressing a button.
 	- This single command will _listen_ for inputs and map what the input was
-		```python
-		pygame.event.get()
-```
+		`python
+		pygame.event.get()`
+
 - You can then use conditionals to check what the said input was. Going back to our infinite loop example, we can end the game in the following manner by checking if the user wants to quit the game
-	```python
+	`python
 	if event.type == pygame.QUIT:
-		running = False
-```
+		running = False`
 
 ---
 - For every game, we also need to create a window to display it in. In pygame, and many other game libraries where X and Y co-ordinates are involved, we can use this following picture to help us understand how they work
@@ -66,9 +65,8 @@
 
 
 - So, setting up our display with a 300 by 300 grid would look something like this in pygame
-	```python
-	screen = pygame.display.set_mode((300, 300))
-```
+	`python
+	screen = pygame.display.set_mode((300, 300))`
 
 ---
 
@@ -82,7 +80,7 @@
 
 - We're going to make a program that simply prints a shape where ever we click. This incorporates everything we talked about to this point, but we'll be adding in some data structures & shapes
 
-	```python
+	`python
 	import pygame
 	pygame.init()
 	screen = pygame.display.set_mode((600, 600))
@@ -90,8 +88,7 @@
 	
 	running = True
 	while running:
-		pygame.display.update()
-```
+		pygame.display.update()`
 
 - This code is similar to the code we saw above. We're making the game by using the library, we set a GUI of 600 by 600 with the background white, and we have the while loop currently running forever
 
