@@ -37,33 +37,33 @@ class DoublyLinked:
             self.current_students += 1
 
         # check if this new student id is in order
-        else:
-        # *** might be an issue here not checking current.next first
-            while current is not None and current.student.studentID < newNode.student.studentID:
-                # update position of current -- stops when ID is out of order
-                current = current.next
-
-            # middle of list
-            if current is not None and current.prev is not None:
-                newNode.next = current
-                newNode.prev = current.prev
-                current.prev.next = newNode
-                current.prev = newNode
-                self.current_students += 1
-
-            # end of list
-            if current is None:
-                self.tail.next = newNode
-                newNode.prev = self.tail
-                self.tail = newNode
-                self.current_students += 1
-
+        else:          
             # front of list
-            else:
+            if (current.student.studentID > newNode.student.studentID):
                 newNode.next = current
                 current.prev = newNode
                 self.head = newNode
                 self.current_students += 1
+            
+            # end of list
+            elif(current.student.studentID < newNode.student.studentID):
+                self.tail.next = newNode
+                newNode.prev = self.tail
+                self.tail = newNode
+                self.current_students += 1
+            else:
+            # *** might be an issue here not checking current.next first
+                while current is not None and current.student.studentID < newNode.student.studentID:
+                    # update position of current -- stops when ID is out of order
+                    current = current.next
+
+                # middle of list
+                if current is not None and current.prev is not None:
+                    newNode.next = current
+                    newNode.prev = current.prev
+                    current.prev.next = newNode
+                    current.prev = newNode
+                    self.current_students += 1
 
     def remove_student(self, studentID):
         # current will now point to the current node in the list
