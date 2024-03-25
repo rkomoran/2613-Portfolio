@@ -23,25 +23,25 @@
 ---
 > How do you use it?
 
-- To use pygame; you would need to install Python and Pygame. Once Python is installed, installing pygame is as simple as writing ```python3 -m pip install -U pygame``` in your terminal.
+- To use pygame; you would need to install Python and Pygame. Once Python is installed, installing pygame is as simple as writing `python3 -m pip install -U pygame` in your terminal.
 
 - All of your code creation will begin after these two lines in your code
-	```python
+  
+	`python
 	import pygame
-	pygame.init()
-```
+	pygame.init()`
 
 - These two lines of code initialises your program to note that the library is being used with the import statement, and the `pygame.init()` initialises the pygame engine. You __must__ include these two lines in order to write any pygame code
 
 ---
 - Pygame uses a _loop_ to process the evens that occur on the screen
 	- The standard convention looks something like this:
-		```python
+		`python
 		running = True
 		while running:
 			# code stuff
-			pygame.display.update()
-		```
+			pygame.display.update()`
+   
 - Note that the following loop is an infinite loop -- that's normal. We usually want an event to occur in the game that turns this boolean value into a ```False```
 
 - The code at the bottom is where all of the changes are made in the program. It constantly checks if there is a new element to be shown on our screen and displays it until the game terminates
