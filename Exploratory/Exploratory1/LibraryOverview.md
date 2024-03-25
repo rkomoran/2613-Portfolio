@@ -182,9 +182,3 @@ while running:
 - One thing I really enjoyed about this library is the amount of resources out there for learning it. Just the official documentation is jam-packed with tutorials & other information which makes it very easy for me to recommend to someone.
 
 - I want to keep using this library for future projects. Although it seems like it's limited to simple projects, there have been more complex ones that are pretty impressive. Maybe I'll make a Frog Jumper instead of a Frog Spawner?
-
----
-**NOTE**
-
-test
----
