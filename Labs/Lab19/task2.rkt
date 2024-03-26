@@ -1,4 +1,5 @@
 #lang racket
+;https://docs.racket-lang.org/reference/createclass.html#%28form._%28%28lib._racket%2Fprivate%2Fclass-internal..rkt%29._this%29%29
 (require racket/class)
 
 (define point% (class object%
@@ -9,18 +10,13 @@
 
                    ; method to caluclate if two points are a certain distance apart
                    (define/public (distance-range other distance-apart)
-                     (let ([d1 (send this distance other)])
-                       (if (<= d1 distance-apart) #t #f)))
+                     (<= (send this distance other) distance-apart))
 
                    ; method to calculate triangle perimeter
                    (define/public (triangle-perimeter other1 other2)
                      (let ([p1 (send this distance other1)]
                            [p2 (send this distance other2)]
-                           ; [p3 (send new this% other1 distance other2)]
-                           ; https://docs.racket-lang.org/reference/createclass.html#%28form._%28%28lib._racket%2Fprivate%2Fclass-internal..rkt%29._this%29%29
-                           [p3 (sqrt (+ (expt (- (send other1 get-x) (send other2 get-x)) 2)
-                                        (expt (- (send other1 get-y) (send other2 get-y)) 2)
-                                        (expt (- (send other1 get-z) (send other2 get-z)) 2)))])
+                           [p3 (send other1 distance other2)])
                        (+ p1 p2 p3)))
                    
                    ;; getters & setters
