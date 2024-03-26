@@ -54,7 +54,7 @@ end
 % compute fxp
 % output is off by 1 -- not really sure where
 function retval = fxp(array)
-  retval = (1:5);
+  retval = zeros(1, length(array));
   for z = 1:length(array)
     currListNums = [];
     % off by one here, but cannot go from 0 to 50
@@ -68,8 +68,8 @@ end
 
 % compute fpo
 function retval = fpo(array)
-  retval = (1:5);
-  for z = 1:length(array) 
+  retval = zeros(1, length(array));
+  for z = 1:length(array)
     currListNums = [];
     for k = 0:50
       currListNums(k+1) = k * (realpow(z, k) / factorial(k));
@@ -80,7 +80,7 @@ end
 
 % compute fsn
 function retval = fsn(array)
-  retval = (1:5);
+  retval = zeros(1, length(array));
   for z = 1:length(array)
     currListNums = [];
     for k = 0:50
@@ -92,7 +92,7 @@ end
 
 % compute fcs
 function retval = fcs(array)
-  retval = (1:5);
+  retval = zeros(1, length(array));
   for z = 1:length(array)
     currListNums = [];
     for k = 0:50
@@ -107,6 +107,10 @@ i = 1;
 while (i < length(formatted_data))
   % to access elements of cell array, must use curly braces
   operand = formatted_data{i};
+
+  if strcmp(operand, "END")
+      break;
+  end
 
   % converting "5" to 5 from cell array
   maxVal = str2num(formatted_data{i+1});
@@ -147,7 +151,7 @@ while (i < length(formatted_data))
     result = fsn(storeNums(maxVal, numbers));
     fprintf(fileID, "FSN: ");
     fprintf(fileID, " %d ", result);
-    fprintf(fileID, "\n"); 
+    fprintf(fileID, "\n");
   case "FCS"
     result = fcs(storeNums(maxVal, numbers));
     fprintf(fileID, "FCS: ");
@@ -158,3 +162,5 @@ while (i < length(formatted_data))
   % this now points to the other operand in cell array
   i += maxVal + 2;
 endwhile
+
+fclose(fileID);
